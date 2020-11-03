@@ -1,61 +1,30 @@
 $(document).ready(function(){
 
-  var activeImage = $('img.active');
+  /* Lo slider prevederà due frecce (icone) che permettono di scorrere tra le immagini dello slider */
 
-  $('.prev').click(
+  $('.prev').click(prevImage);
+  $('.next').click(nextImage);
+
+
+  /* Per scorrere le immagini permettere anche l'uso delle frecce sinistra e destra della tastiera ( e' un evento diverso dal click, quale? ) */
+
+  $(document).keydown(
     function(){
-      // scorrimento immagini
-      var activeImage = $('img.active');
-      var firstImage = $('img.first');
-      var lastImage = $('img.last');
-
-      activeImage.removeClass("active");
-      if (activeImage.hasClass("first")) {
-        lastImage.addClass("active");
-      } else {
-        activeImage.prev().addClass("active");
+      if(event.which === 37){ //left arrow
+        prevImage();
+      } else if (event.which === 39) {  //right arrow
+        nextImage();
       }
+    })
 
-      // scorrimento pallini
-      var activeDot = $(".nav i.active");
-      var firstDot = $(".nav i.first");
-      var lastDot = $(".nav i.last");
-
-      activeDot.removeClass("active");
-      if (activeDot.hasClass("first")) {
-        lastDot.addClass("active");
-      } else {
-        activeDot.prev().addClass("active");
-      }
-  });
-
-  $('.next').click(
-    function(){
-
-      // scorrimento immagini
-      var activeImage = $('img.active');
-      var firstImage = $('img.first');
-      var lastImage = $('img.last');
-
-      activeImage.removeClass("active");
-      if (activeImage.hasClass("last")) {
-        firstImage.addClass("active");
-      } else {
-        activeImage.next().addClass("active");
-      }
-
-      // scorrimento pallini
-      var activeDot = $(".nav i.active");
-      var firstDot = $(".nav i.first");
-      var lastDot = $(".nav i.last");
-
-      activeDot.removeClass("active");
-      if (activeDot.hasClass("last")) {
-        firstDot.addClass("active");
-      } else {
-        activeDot.next().addClass("active");
-      }
-  });
 
 
 })
+
+
+// https://api.jquery.com/event.which/
+
+
+/* Bonus:
+Clicchiamo sui pallini e mostriamo l'immagine corrispondente
+Generiamo i pallini con JS */
